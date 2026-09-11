@@ -3,12 +3,12 @@ version: '3'
 services:
 
   web:
-    build: ..
+    build: .
     command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 mysite.wsgi:application"
+      bash -c "./manage.py collectstatic --noinput && ./manage.py makemigrations && ./manage.py migrate && gunicorn -b 0.0.0.0:8000 my_site.wsgi:application"
     volumes:
       - .:/app
-      - /home/ubuntu/AvitoPython48/mysite/staticfiles:/app/static
+      - /home/ubuntu/AvitoPython48/my_site/staticfiles:/app/static
       - media_volume:/app/media
     ports:
       - "8000:8000"
@@ -30,7 +30,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - /home/ubuntu/AvitoPython48/mysite/staticfiles:/app/static
+      - /home/ubuntu/AvitoPython48/my_site/staticfiles:/app/static
       - media_volume:/app/media
     depends_on:
       - web
